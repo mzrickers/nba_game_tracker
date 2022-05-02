@@ -10,9 +10,13 @@ printer = PrettyPrinter()
 def get_links():
   data = get(BASE_URL + ALL_JSON).json()
   links = data['links']
+  return links
 
 def get_scoreboard():
-  scoreboard = links['currentScoreboard']
+  scoreboard = get_links()['currentScoreboard']
+  data = get(BASE_URL + scoreboard).json()
+
+  printer.pprint(data)
 
 
-
+get_scoreboard()
